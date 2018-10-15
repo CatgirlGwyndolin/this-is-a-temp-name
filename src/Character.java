@@ -10,6 +10,7 @@ import java.io.BufferedWriter;*/
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.io.IOException;
+import java.lang.IndexOutOfBoundsException;
 import java.lang.ClassNotFoundException;
 import java.io.Serializable;
 
@@ -76,11 +77,17 @@ public class Character implements Serializable {
 			/*this.battleEffect = new LinkedList(c.battleEffect);
 			this.sprites = new SpriteSet(c.sprites); */ 	//TODO: Uncomment these lines after creating SpriteSet and Effect
 		}
-		catch(IOException i) {
+		catch(IOException io) {
 			System.out.println("IOException: file " + charFile + " could not be found in the file system.");
+			io.printStackTrace();
 		}
-		catch(ClassNotFoundException i) {
+		catch(ClassNotFoundException cnf) {
 			System.out.println("ClassNotFoundException: a class in" + charFile + " could not be found in the class path.");
+			cnf.printStackTrace();
+		}
+		catch(IndexOutOfBoundsException ioob) {
+			System.out.println("IndexOutOfBoundsException: there was a problem converting " + charFile + " to a Character.");
+			ioob.printStackTrace();
 		}
 	}
 }
