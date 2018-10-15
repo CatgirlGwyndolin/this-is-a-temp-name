@@ -2,61 +2,85 @@
  * 
  */
 
+import java.io.File;
+/*import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;*/
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.io.IOException;
+import java.lang.ClassNotFoundException;
+import java.io.Serializable;
+
+
 /**
  * @author Maia
  *
  */
-public class Character {
+public class Character implements Serializable {
 
-		private int 
-			healthPoints, 
-			magicAttack,
-			magicResistance,
-			physicalAttack,
-			physicalResistance,
-			attackSpeed,
-			movementSpeed,
-			luck,
-			hitModifier,
-			dodgeModifier,
-			criticalChance;
-		private int[]	
-			weaponProficiency,
-			supportLevel;
-		/*
-		 *  private 	List<Effect>
-		 *		battleEffect; //TODO: Make this a List of Effects when Effects has been written
-		 **/ 
-		/*
-		 *  private SpriteSet 
-		 * 		sprites; //TODO: Make this a SpriteSet object when SpriteSet has been written
-		 * */ 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private int 
+		healthPoints, 
+		magicAttack,
+		magicResistance,
+		physicalAttack,
+		physicalResistance,
+		attackSpeed,
+		movementSpeed,
+		luck,
+		hitModifier,
+		dodgeModifier,
+		criticalChance;
+	private int[]	
+		weaponProficiency,
+		supportLevel;
+	/*
+	 *  private 	List<Effect>
+	 *		battleEffect; //TODO: Make this a List of Effects when Effects has been written
+	 **/ 
+	/*
+	 *  private SpriteSet 
+	 * 		sprites; //TODO: Make this a SpriteSet object when SpriteSet has been written
+	 * */ 
 
-		public Character() { //Default Character
-			healthPoints = 1;
-			magicAttack = 1;
-			magicResistance = 1;
-			physicalAttack = 1;
-			physicalResistance = 1;
-			attackSpeed = 1;
-			movementSpeed = 1;
-			luck = 1;
-			hitModifier = 1;
-			dodgeModifier = 1;
-			criticalChance = 1;
-			//weaponProficiency[] = new int[WeaponController.getNumWeapons]; //TODO: write WeaponController.java
-			/*
-			 * for(int i = 0; i < weaponProficiency.length; i++) {
-			 * 		weaponProficiency[i] = 1;
-			 * }	//TODO: same as above
-			 */
-			//supportLevels[] = new int[SupportController.getNumWeapons]; //TODO: write SupportController.java
-			/*
-			 * for(int i = 0; i < supportLevels.length; i++) {
-			 * 		supportLevels[i] = 1;
-			 * }	//TODO: same as above
-			 */
-			//List<Effect> = new LinkedList<Effect> //TODO: implement EffectController.java
-			//SpriteSet = new SpriteSet() //TODO: implement SpriteController.java
+	public Character(File charFile) {
+		try {
+			ObjectInputStream stream = new ObjectInputStream(new FileInputStream(charFile));
+			Character c = (Character) stream.readObject();
+			stream.close();
+			this.healthPoints = c.healthPoints;
+			this.magicAttack = c.magicAttack;
+			this.magicResistance = c.magicResistance;
+			this.physicalAttack = c.physicalAttack;
+			this.physicalResistance = c.physicalResistance;
+			this.attackSpeed = c.attackSpeed;
+			this.movementSpeed = c.movementSpeed;
+			this.luck = c.luck;
+			this.hitModifier = c.hitModifier;
+			this.dodgeModifier = c.dodgeModifier;
+			this.criticalChance = c.criticalChance;
+			this.weaponProficiency = new int[c.weaponProficiency.length];
+			for(int i = 0; i < this.weaponProficiency.length; i++) {
+				this.weaponProficiency[i] = c.weaponProficiency[i];
+			}
+			this.supportLevel = new int[c.supportLevel.length];
+			for(int i = 0; i < this.supportLevel.length; i++) {
+				this.supportLevel[i] = c.supportLevel[i];
+			}
+			/*this.battleEffect = new LinkedList(c.battleEffect);
+			this.sprites = new SpriteSet(c.sprites); */ 	//TODO: Uncomment these lines after creating SpriteSet and Effect
 		}
+		catch(IOException i) {
+			System.out.println("IOException: file " + charFile + " could not be found in the file system.");
+		}
+		catch(ClassNotFoundException i) {
+			System.out.println("ClassNotFoundException: a class in" + charFile + " could not be found in the class path.");
+		}
+	}
 }
