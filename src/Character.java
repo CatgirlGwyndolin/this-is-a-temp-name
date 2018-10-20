@@ -90,4 +90,29 @@ public class Character implements Serializable {
 			ioob.printStackTrace();
 		}
 	}
+	
+	public Character(int hp, int ma, int mr, int pa, int pr, int as, int ms, int l, int hm, int dm, int cc, int[] wp, int[] sl/*, List be, SpriteSet s*/) {
+		healthPoints = hp;
+		magicAttack = ma;
+		magicResistance = mr;
+		physicalAttack = pa;
+		physicalResistance = pr;
+		attackSpeed = as;
+		movementSpeed = ms;
+		luck = l;
+		hitModifier = hm;
+		dodgeModifier = dm;
+		criticalChance = cc;
+		weaponProficiency = new int[wp.length];
+		for(int i = 0; i < weaponProficiency.length; i++) {
+			weaponProficiency[i] = wp[i];
+		}
+		supportLevel = new int[sl.length];
+		for(int i = 0; i < supportLevel.length; i++) {
+			supportLevel[i] = sl[i];
+		}
+		/*battleEffect = new LinkedList(be);
+		sprites = new SpriteSet(c.sprites); */ 	//TODO: Uncomment these lines after creating SpriteSet and Effect
+	}
+
 }
