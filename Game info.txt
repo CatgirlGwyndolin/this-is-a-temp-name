@@ -1,0 +1,89 @@
+Turn-Based Battles
+	Turn timer?
+Characters
+	Attributes
+		Hp
+			1-to-1
+		Magic damage
+			1-to-1
+		Magic resistance
+			1-to-1
+		Physical damage
+			1-to-1
+		Physical resistance
+			1-to-1
+		Attack speed (attack per turn modifier)
+			1-to-1
+		Movement speed
+			1-to-1
+		Luck
+			1-to-1
+		Hit modifier
+			1-to-1
+		Dodge modifier
+			1-to-1
+		Weapon proficiency
+			1-to-Many
+		Weapon knowledge (What weapons may be used by the character)
+			1-to-Many
+		Critical chance
+			1-to-1
+		Support level
+			1-to-Many
+		Battle Effects
+			1-to-Many
+Weapons
+	Attributes
+		Physical damage modifier
+			1-to-1
+		Magicial damage modifier
+			1-to-1
+		Accuracy modifier
+			1-to-1
+		Type
+			1-to-Many
+		Target type
+			1-to-Many
+		Type advantage modifier
+			1-to-Many
+		Attack speed modifier (weight?)
+			1-to-1
+		Target effect
+			1-to-Many
+		Terrain effect
+			1-to-Many
+		Durability (?)
+			1-to-1
+Terrain Square
+	Attributes
+		Type
+			1-to-Many
+		Movement cost
+			1-to-1
+		Ability to move through/passability
+			1-to-1
+		Effect to character (with expiration timer)
+			1-to-Many
+		Interactability
+			1-to-1
+		Interaction Effect
+			1-to-Many
+		Effect on movement through
+			1-to-Many
+Battle
+	Attributes
+		Completion Requirements
+			1-to-Many
+		Turn effect
+			1-to-Many
+		Effects
+			1-to-Many
+Cutscenes
+	Prerendered Background
+		Prerendered background of the scene location
+		Waist-Up sprites
+		Textboxes placed dymanically? Or static location at bottom of screen
+	In-engine Custscene
+		Scene rendered in-engine in the background
+		Bust sprites over textbox (left or right depending on location of character in scene)
+		Textbox at bottom
